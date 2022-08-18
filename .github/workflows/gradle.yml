@@ -13,6 +13,17 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+
+      - name: Decode fcm.json
+        env:
+         FIREBASE_SERVER_SECRET: ${{ secrets.FIREBASE_SERVER_SECRET }}
+        run: echo $FIREBASE_SERVER_SECRET > ./fcm.json
+
+      - name: Decode constants.kt
+        env:
+          FIREBASE_SERVER_CONSTANTS: ${{ secrets.FIREBASE_SERVER_CONSTANTS }}
+        run: echo $FIREBASE_SERVER_CONSTANTS > .src/main/kotlin/ru/netology/pusher/constants.kt
+
       - name: Set up JDK 1.8
         uses: actions/setup-java@v1
         with:
